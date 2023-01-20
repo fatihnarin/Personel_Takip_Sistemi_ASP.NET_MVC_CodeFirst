@@ -1,0 +1,73 @@
+﻿@using PDKS_Code_First.Entity
+@model List<PersonelKiyafet>
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Listele", "PersonelKiyafet", FormMethod.Get))
+{
+
+    <strong>
+        TC Kimlik No : @Html.TextBox("tc");
+
+        Ad : @Html.TextBox("ad");
+
+        Soyad : @Html.TextBox("soyad");
+        <input type="submit" value="Ara" class="btn btn-primary" />
+
+    </strong>
+
+}
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Personel Id</th>
+        <th>TC KİMLİK NO</th>
+        <th>AD</th>
+        <th>SOYAD</th>
+        <th>DEPARTMAN ADI</th>
+        <th>İSTEK NEDENİ</th>
+        <th>RENK</th>
+        <th>MODEL</th>
+        <th>ÜST BEDEN NO</th>
+        <th>ALT BEDEN NO</th>
+        <th>KAFA BEDEN NO</th>
+        <th>AYAKKAPI NO</th>
+        <th>KİLO</th>
+        <th>BOY</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+<tr>
+    <td>@x.Id</td>
+    <td>@x.PersonelOzlukBilgileri.Id</td>
+    <td>@x.PersonelOzlukBilgileri.TcKimlik </td>
+    <td>@x.PersonelOzlukBilgileri.Ad</td>
+    <td>@x.PersonelOzlukBilgileri.Soyad</td>
+    <td>@x.Departmanlar.DepartmanAdi</td>
+    <td>@x.IstekNedeni</td>
+    <td>@x.Renk</td>
+    <td>@x.Model</td>
+    <td>@x.UstBedenNo</td>
+    <th>@x.AltBedenNo</th>
+    <th>@x.KafaBedenNo</th>
+    <th>@x.AyakkabiNo</th>
+    <th>@x.Kilo</th>
+    <th>@x.Boy</th>
+    <td>
+        @Html.ActionLink("SİL", "Sil", new { id = x.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Personel Kıyafet Kaydını Silmek İstediğinize emin misiniz?')" })
+
+    </td>
+    <td>
+        <a href="/PersonelKiyafet/GetirGuncelle/@x.Id" class="btn btn-success">GÜNCELLE</a>
+    </td>
+</tr>
+    }
+</table>
+<font size="4" color="red" face="Arial" class="text-danger"> @TempData["Warning"] </font>
+<a href="/PersonelKiyafet/EkleListe/" class="btn btn-primary">EKLE</a>
+
+

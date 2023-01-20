@@ -1,0 +1,34 @@
+﻿@using PDKS_Code_First.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList<Departmanlar>
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>DEPARTMAN ADI</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Id</td>
+            <td>@x.DepartmanAdi </td>
+            <td>
+                @Html.ActionLink("SİL", "Sil", new { id = x.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Departman Kaydını Silmek İstediğinize emin misiniz?')" })
+
+            </td>
+            <td>
+                <a href="/Departmanlar/Getir/@x.Id" class="btn btn-success">GÜNCELLE</a>
+            </td>
+        </tr>
+    }
+</table>
+<font size="5" color="red" face="Arial"> @TempData["Warning"] </font>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Listele", new { sayfa }))
+<a href="/Departmanlar/Ekle" class="btn btn-primary">Departman Ekle</a>

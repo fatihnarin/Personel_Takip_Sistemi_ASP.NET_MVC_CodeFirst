@@ -1,0 +1,40 @@
+﻿@model PDKS_Code_First.Entity.Departmanlar
+@{
+    ViewBag.Title = "Getir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "Departmanlar", FormMethod.Post))
+{
+    <h2>Departman Güncelleme</h2>
+    <br />
+
+    <br />
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.Id, "Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Id, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.Id, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.DepartmanAdi, "Ad", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.DepartmanAdi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DepartmanAdi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <font size="5" color="red" face="Arial"> @TempData["Warning"] </font>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+
+                <button new {class="btn btn-success" , onclick="return confirm('Departman Adını Güncellemek İstediğinize emin misiniz?')">GÜNCELLE</button>
+            </div>
+        </div>
+
+    </div>
+}
+<div>
+    @Html.ActionLink("Geri Dön", "Listele")
+</div>

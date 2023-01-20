@@ -1,0 +1,105 @@
+﻿
+@model PDKS_Code_First.Classes.Class1.LoginKayit
+
+@{
+    ViewBag.Title = "KayitOl";
+    Layout = "~/Views/Shared/_BosLayout.cshtml";
+}
+
+
+<div>
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 class="modal-title">YENİ KULLANICI KAYIT</h2>
+
+            </div>
+            <form method="post" action="/Login/KayitOl/">
+
+                <div class="modal-body">
+
+                    <label>
+
+                        Tc Kimlik No
+
+                    </label>
+
+                    @Html.TextBoxFor(m => m.tcno, new { @class = "form-control" })
+
+                    <br />
+                    <label>
+
+                        Sicil No
+
+                    </label>
+
+                    @Html.TextBoxFor(m => m.sicilno, new { @class = "form-control" })
+
+                    <br />
+                    <label>
+
+                        Ad
+
+                    </label>
+
+                    @Html.TextBoxFor(m => m.ad, new { @class = "form-control" })
+
+                    <br />
+                    <label>
+
+                        Soyad
+
+                    </label>
+
+                    @Html.TextBoxFor(m => m.soyad, new { @class = "form-control" })
+
+                    <br />
+                    <label>
+
+                        E Posta
+
+                    </label>
+
+                    @Html.TextBoxFor(m => m.eposta, new { @class = "form-control" })
+
+                    <br />
+                    <label>
+
+                        Kullanıcı Adı
+
+                    </label>
+
+                    @Html.TextBoxFor(m => m.kullaniciadi, new { @class = "form-control" })
+
+                    <br />
+
+                    <label>
+
+                        Parola
+
+                    </label>
+
+                    @Html.TextBoxFor(m => m.parola, new { @class = "form-control" })
+
+                    <br />
+                    <font size="5" color="red" face="Arial"> @TempData["Warning"] </font>
+                    <br />
+                    <button type="submit" class="btn btn-info">Kayıt Ol</button>
+
+                    <a href="/Login/Giris/" class="btn btn btn-link">Geri Dön</a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+

@@ -1,0 +1,144 @@
+﻿@using PDKS_Code_First.Entity
+@using PagedList
+@using PagedList.Mvc
+@model PagedList<PersonelOzlukBilgileri>
+
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<a href="/PersonelOzluk/Ara" class="btn btn-link">Personel Arama Sayfası</a>
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>TC KİMLİK NO</th>
+        <th>AD</th>
+        <th>SOYAD</th>
+        <th>UNVAN</th>
+        <th>SİCİL NO</th>
+        <th>CİNSİYET</th>
+        <th>CEP TELEFONU</th>
+        <th>E POSTA</th>
+        <th>MEDENİ DURUM</th>
+        <th>ADRES</th>
+        <th>ASKERLİK</th>
+        <th>EHLİYET</th>
+        <th>ENGEL DURUMU</th>
+        <th>DEPARTMAN</th>
+        <th>DOGUM TARİHİ</th>
+        <th>İŞE GİRİŞ TARİHİ</th>
+        <th>DURUM</th>
+        <th>İŞTEN ÇIKIŞ TARİHİ</th>
+        <th>EŞ TC NO</th>
+        <th>EŞ AD SOYAD</th>
+        <th>EŞ TEL</th>
+        <th>EŞ DURUM</th>
+
+
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Id</td>
+            <td>@x.TcKimlik </td>
+            <td>@x.Ad</td>
+            <td>@x.Soyad</td>
+            <td>@x.Unvan</td>
+            <td>@x.KurumSicilNo</td>
+            <td>
+                @if (@x.Cinsiyet == false)
+                {
+                    ViewBag.a = "Erkek";
+                }
+                else
+                {
+                    ViewBag.a = "Kadın";
+                }
+                @ViewBag.a
+            <td>@x.CepTelefonu</td>
+            <td>@x.Eposta</td>
+            <td>
+                @if (@x.MedeniDurum == false)
+                {
+                    ViewBag.a = "Bekar";
+                }
+                else if (@x.MedeniDurum == true)
+                {
+                    ViewBag.a = "Evli";
+                }
+                else
+                {
+                    ViewBag.a = "";
+                }
+                @ViewBag.a
+            </td>
+            <td>@x.EvAdresi</td>
+            <td>@x.Askerlik</td>
+            <td>@x.Ehliyet</td>
+            <td>
+              
+                @if (@x.EngellilikDurumu == false)
+        {
+            ViewBag.a = "Sağlıklı";
+        }
+        else if (@x.EngellilikDurumu == true)
+        {
+            ViewBag.a = "Engelli";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+            </td>
+            <td>@x.Departmanlar.DepartmanAdi</td>
+            <td>@x.DogumTarihi</td>
+            <td>@x.İseGirisTarihi</td>
+            <td>
+                @if (@x.AktifPasif == false)
+                {
+                    ViewBag.a = "Pasif";
+                }
+                else if (@x.AktifPasif == true)
+                {
+                    ViewBag.a = "Aktif";
+                }
+                else
+                {
+                    ViewBag.a = "";
+                }
+                @ViewBag.a
+            </td>
+            <td>@x.CikisTarihi</td>
+            <td>@x.EsiTc</td>
+            <td>@x.EsiAdiSoyadi</td>
+            <td>@x.EsiTelefon</td>
+            <td>
+                @if (@x.EsiIsDurumu == false)
+                {
+                    ViewBag.a = "Çalışmıyor";
+                }
+                else if (@x.EsiIsDurumu == true)
+                {
+                    ViewBag.a = "Çalışıyor";
+                }
+                else
+                {
+                    ViewBag.a = "";
+                }
+                @ViewBag.a
+            </td>
+            <td>
+                @Html.ActionLink("SİL","Sil",new {id=x.Id },new {@class="btn btn-danger", onclick="return confirm('Personel Özlük Bilgilerini Silmek İstediğinize emin misiniz?')" })
+
+            </td>
+            <td>
+                <a href="/PersonelOzluk/Getir/@x.Id" class="btn btn-success">GÜNCELLE</a>
+            </td>
+        </tr>
+    }
+</table>
+<font size="4" color="red" face="Arial" class="text-danger"> @TempData["Warning"] </font>
+@Html.PagedListPager((IPagedList)Model, sayfa => Url.Action("Listele", new { sayfa }))
+<a href="/PersonelOzluk/Ekle" class="btn btn-primary">Personel Ekle</a>
+

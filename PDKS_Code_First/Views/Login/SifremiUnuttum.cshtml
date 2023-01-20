@@ -1,0 +1,69 @@
+﻿@model PDKS_Code_First.Entity.Kullanicilar
+@{
+    ViewBag.Title = "SifremiUnuttum";
+    Layout = "~/Views/Shared/_BosLayout.cshtml";
+}
+
+<div>
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h2 class="modal-title">ŞİFREMİ UNUTTUM</h2>
+
+            </div>
+
+            <form method="post" action="/Login/SifremiUnuttum/">
+
+                <div class="modal-body">
+
+                    <label>
+
+                        Tc Kimlik No
+
+                    </label>
+
+                    @Html.TextBoxFor(m => m.TcNo, new { @class = "form-control" })
+
+                    <br />
+
+                    <label>
+
+                        E Posta
+
+                    </label>
+
+                    @Html.TextBoxFor(m => m.EPosta, new { @class = "form-control" })
+
+                    <br />
+                    <label>
+
+                        Kullanıcı Adı
+
+                    </label>
+
+                    @Html.TextBoxFor(m => m.KullaniciAdi, new { @class = "form-control" })
+
+                    <br />
+
+
+                    <font size="5" color="red" face="Arial"> @TempData["Warning"] </font>
+
+                    <button type="submit" class="btn btn-info">Kaydet</button>
+
+                    <a href="/Login/Giris/" class="btn btn-link">Geri Dön</a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
