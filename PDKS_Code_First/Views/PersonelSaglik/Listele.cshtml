@@ -1,0 +1,236 @@
+﻿@using PDKS_Code_First.Entity
+@model List<PersonelSaglikDurumlari>
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Listele", "PersonelSaglik", FormMethod.Get))
+{
+
+    <strong>
+        TC Kimlik No : @Html.TextBox("tc");
+
+        Ad : @Html.TextBox("ad");
+
+        Soyad : @Html.TextBox("soyad");
+        <input type="submit" value="Ara" class="btn btn-primary" />
+
+    </strong>
+
+}
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Personel Id</th>
+        <th>TC KİMLİK NO</th>
+        <th>AD</th>
+        <th>SOYAD</th>
+        <th>DEPARTMAN ADI</th>
+        <th>ALERJİ</th>
+        <th>KALP HASTALIĞI</th>
+        <th>KAS EKLEM RAHATSIZLIĞI</th>
+        <th>GÖRME KUSURU</th>
+        <th>İŞİTME KAYBI</th>
+        <th>BAĞIŞIKLIK GÜÇLÜĞÜ</th>
+        <th>KRONİK RAHATSIZLIK</th>
+        <th>ASTIM KOAH</th>
+        <th>SİNDİRİM RAHATSIZLIĞI</th>
+        <th>RUHSAL HASTALIK</th>
+        <th>ZİHİNSEL HASTALIK</th>
+        <th>KAN GRUBU</th>
+        <th>AÇIKLAMA</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+<tr>
+    <td>@x.Id</td>
+    <td>@x.PersonelOzlukBilgileri.Id</td>
+    <td>@x.PersonelOzlukBilgileri.TcKimlik </td>
+    <td>@x.PersonelOzlukBilgileri.Ad</td>
+    <td>@x.PersonelOzlukBilgileri.Soyad</td>
+    <td>@x.PersonelOzlukBilgileri.Departmanlar.DepartmanAdi</td>
+    <td>
+        @if (@x.Alerji == false)
+        {
+            ViewBag.a = "YOK";
+        }
+        else if (x.Alerji == true)
+        {
+            ViewBag.a = "VAR";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+    </td>
+    <td>
+        @if (@x.KalpHastaligi == false)
+        {
+            ViewBag.a = "YOK";
+        }
+        else if (x.KalpHastaligi == true)
+        {
+            ViewBag.a = "VAR";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+    </td>
+    <td>
+        @if (@x.KasEklem == false)
+        {
+            ViewBag.a = "YOK";
+        }
+        else if (x.KasEklem == true)
+        {
+            ViewBag.a = "VAR";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+    </td>
+    <td>
+        @if (@x.GormeKusuru == false)
+        {
+            ViewBag.a = "YOK";
+        }
+        else if (x.GormeKusuru == true)
+        {
+            ViewBag.a = "VAR";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+    </td>
+    <td>
+        @if (@x.IsitmeKaybi == false)
+        {
+            ViewBag.a = "YOK";
+        }
+        else if (x.IsitmeKaybi == true)
+        {
+            ViewBag.a = "VAR";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+    </td>
+    <td>
+        @if (@x.BagisiklikGuclugu == false)
+        {
+            ViewBag.a = "YOK";
+        }
+        else if (x.BagisiklikGuclugu == true)
+        {
+            ViewBag.a = "VAR";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+    </td>
+    <td>
+        @if (@x.KronikHastalik == false)
+        {
+            ViewBag.a = "YOK";
+        }
+        else if (x.KronikHastalik == true)
+        {
+            ViewBag.a = "VAR";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+    </td>
+    <td>
+        @if (@x.AstimKoah == false)
+        {
+            ViewBag.a = "YOK";
+        }
+        else if (x.AstimKoah == true)
+        {
+            ViewBag.a = "VAR";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+    </td>
+    <td>
+        @if (@x.SindirimRahatsizliklari == false)
+        {
+            ViewBag.a = "YOK";
+        }
+        else if (x.SindirimRahatsizliklari == true)
+        {
+            ViewBag.a = "VAR";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+    </td>
+    <td>
+        @if (@x.RuhsalHastalik == false)
+        {
+            ViewBag.a = "YOK";
+        }
+        else if (x.RuhsalHastalik == true)
+        {
+            ViewBag.a = "VAR";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+    </td>
+    <td>
+        @if (@x.ZihinselHastalik == false)
+        {
+            ViewBag.a = "YOK";
+        }
+        else if (x.ZihinselHastalik == true)
+        {
+            ViewBag.a = "VAR";
+        }
+        else
+        {
+            ViewBag.a = "";
+        }
+        @ViewBag.a
+    </td>
+    <td>@x.KanGrubu</td>
+    <td>@x.Aciklama</td>
+    <td>
+        @Html.ActionLink("SİL", "Sil", new { id = x.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Personel Sağlık Kaydını Silmek İstediğinize emin misiniz?')" })
+
+    </td>
+    <td>
+        <a href="/PersonelSaglik/GetirGuncelle/@x.Id" class="btn btn-success">GÜNCELLE</a>
+    </td>
+</tr>
+    }
+</table>
+<font size="4" color="red" face="Arial" class="text-danger"> @TempData["Warning"] </font>
+<a href="/PersonelSaglik/EkleListe/" class="btn btn-primary">Sağlık Bilgisi Ekle</a>
+
+

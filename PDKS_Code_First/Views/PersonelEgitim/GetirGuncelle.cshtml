@@ -1,0 +1,91 @@
+﻿@model PDKS_Code_First.Classes.Class1.PersonelEgitimView
+@{
+    ViewBag.Title = "GetirGuncelle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Guncelle", "PersonelEgitim", FormMethod.Post))
+{
+    <h2>Personel Eğitim Güncelleme</h2>
+    <br />
+
+    <br />
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.PersonelEgitimid, "Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.PersonelEgitimid, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.PersonelEgitimid, new { @class = "form-control" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PersonelId, "Personel Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.PersonelId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.PersonelId, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tc, "TC Kimlik No", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Tc, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ad, "Ad ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Ad, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Soyad, "Soyad ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Soyad, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Departmanad, "Departman Adı ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Departmanad, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EgitimDurumu, "Eğitim Durumu", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EnumDropDownListFor(model => model.EgitimDurumu, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EgitimDurumu, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SonMezunOlduguUkulAdı, "En Son Mezun Olduğu Okul Adı", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.SonMezunOlduguUkulAdı, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SonMezunOlduguUkulAdı, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <font size="4" color="red" face="Arial" class="text-danger"> @TempData["Warning"] </font>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+
+                <button new {class="btn btn-success" , onclick="return confirm('Personel Eğitim Bilgilerini Güncellemek İstediğinize emin misiniz?')">EĞİTİM GÜNCELLE</button>
+            </div>
+        </div>
+    </div>
+
+
+}
+<div>
+    @Html.ActionLink("Geri Dön", "Listele")
+</div>
+
+

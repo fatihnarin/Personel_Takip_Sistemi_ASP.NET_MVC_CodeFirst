@@ -186,7 +186,7 @@ namespace PDKS_Code_First.Controllers
                         ızinTakip.IzinBaslangicTarihi = ızinTakipView.bas;
                         ızinTakip.İzinBitisTarihi = ızinTakipView.son;
                         ızinTakip.IzinTipi = ızinTakipView.tip;
-                        db.IzinTakip.Add(ızinTakip);
+                        //db.IzinTakip.Add(ızinTakip);
                         db.SaveChanges();
                         return RedirectToAction("Listele");
                     }

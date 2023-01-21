@@ -15,9 +15,10 @@ namespace PDKS_Code_First.Entity
 
         public byte DepartmanId { get; set; }
 
-        [Required]
+       
         [StringLength(20)]
         [MaxLength(20, ErrorMessage = "En fazla 20 karakterden oluþur!")]
+        [Required(ErrorMessage = "Ýstek nedeni boþ býrakýlamaz")]
         public string IstekNedeni { get; set; }
 
         public Renkler Renk { get; set; }
@@ -44,7 +45,7 @@ namespace PDKS_Code_First.Entity
             Bordo=1,
             Mavi=2,
             Yeþi=3,
-            Siyah
+            Siyah=4
         }
         public enum AltBeden:byte
         {

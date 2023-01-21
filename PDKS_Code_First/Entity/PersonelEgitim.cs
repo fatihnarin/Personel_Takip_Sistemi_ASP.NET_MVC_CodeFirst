@@ -13,9 +13,25 @@ namespace PDKS_Code_First.Entity
 
         public int PersonelId { get; set; }
 
-        [Required]
-        public string EgitimBilgisi { get; set; }
+        [Required(ErrorMessage = "Zorunlu Alan!!!")]
+        public EgitimDurum EgitimDurumu { get; set; }
+
+       
+        public string SonMezunOlduguUkulAdý { get; set; }
 
         public virtual PersonelOzlukBilgileri PersonelOzlukBilgileri { get; set; }
+        public enum EgitimDurum:byte
+        {           
+            Okuma_Yazma_Bilmiyor =0,
+            Okur_Yazar=1,
+            Ýlkokul=2,
+            Ortaokul=3,
+            Ilkogretim=4,
+            Lise=5,
+            Onlisans=6,
+            Lisans=7,
+            Yuksek_Lisans=8,
+            Doktora=9
+        }
     }
 }

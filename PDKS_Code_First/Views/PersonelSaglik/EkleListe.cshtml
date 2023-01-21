@@ -1,0 +1,51 @@
+﻿@using PDKS_Code_First.Entity
+@model List<PersonelOzlukBilgileri>
+@{
+    ViewBag.Title = "EkleListe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("EkleListe", "PersonelSaglik", FormMethod.Get))
+{
+
+    <strong>
+        TC Kimlik No : @Html.TextBox("tc");
+
+        Ad : @Html.TextBox("ad");
+
+        Soyad : @Html.TextBox("soyad");
+        <input type="submit" value="Ara" class="btn btn-primary" />
+
+    </strong>
+
+}
+
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>Personel Id</th>
+        <th>TC KİMLİK NO</th>
+        <th>AD</th>
+        <th>SOYAD</th>
+        <th>DEPARTMAN Adı</th>
+        <th>SAĞLIK BİLGİSİ EKLE</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Id</td>
+            <td>@x.TcKimlik </td>
+            <td>@x.Ad</td>
+            <td>@x.Soyad</td>
+            <td>@x.Departmanlar.DepartmanAdi</td>
+
+            <td>
+                <a href="/PersonelSaglik/GetirEkle/@x.Id" class="btn btn-success">SAĞLIK BİLGİSİ EKLE</a>
+            </td>
+        </tr>
+    }
+</table>
+<div>
+    @Html.ActionLink("Geri Dön", "Listele")
+</div>
+

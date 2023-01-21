@@ -1,0 +1,97 @@
+﻿@model PDKS_Code_First.Classes.Class1.PersonelCocukView
+@{
+    ViewBag.Title = "GetirEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Ekle", "PersonelCocuk", FormMethod.Post))
+{
+    <h2>Personel Çocuk Ekleme</h2>
+    <br />
+
+    <br />
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.PersonelId, "Personel Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.PersonelId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.PersonelId, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tc, "TC Kimlik No", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Tc, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ad, "Ad ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Ad, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Soyad, "Soyad ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Soyad, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Departmanad, "Departman Adı ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Departmanad, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CocukTc, "Çocuk TC ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.CocukTc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CocukTc, "", new { @class = "text-danger" })
+                <font size="2" color="red" face="Arial" class="text-danger"> @ViewBag.Cocuktc</font>
+                
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CocukAdiSoyadi, "Çocuk Ad-Soyad", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.CocukAdiSoyadi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CocukAdiSoyadi, "", new { @class = "text-danger" })          
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CocukCinsiyet, "Çocuk Cinsiyet", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DropDownList("CocukCinsiyet",
+                 new[]
+                 {
+                     new SelectListItem(){Value="false", Text="Erkek"},
+                      new SelectListItem(){Value="true", Text="Kız"}
+                 }, "Çocuk Cinsiyeti Seçiniz ...", new { @name = "CocukCinsiyet", @class = "form-control" }
+                 )
+
+                @Html.ValidationMessageFor(model => model.CocukCinsiyet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CocukDogumTarihi, "Çocuk Doğum Tarihi", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EditorFor(model => model.CocukDogumTarihi, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                @Html.ValidationMessageFor(model => model.CocukDogumTarihi, "", new { @class = "text-danger" })
+                <font size="2" color="red" face="Arial" class="text-danger"> @ViewBag.Cocukdogum</font>
+            </div>
+        </div>
+
+        <font size="4" color="red" face="Arial" class="text-danger"> @TempData["Warning"] </font>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-8">
+
+                <button new {class="btn btn-success" , onclick="return confirm('Personel Çocuk Bilgilerini Kaydetmek İstediğinize emin misiniz?')">ÇOCUK KAYDET</button>
+            </div>
+        </div>
+
+    </div>
+}
+<div>
+    @Html.ActionLink("Geri Dön", "EkleListe")
+</div>

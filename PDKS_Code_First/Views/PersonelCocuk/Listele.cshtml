@@ -1,0 +1,80 @@
+﻿@using PDKS_Code_First.Entity
+@model List<PersonelCocuk>
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Listele", "PersonelCocuk", FormMethod.Get))
+{
+
+    <strong>
+        TC Kimlik No : @Html.TextBox("tc");
+
+        Ad : @Html.TextBox("ad");
+
+        Soyad : @Html.TextBox("soyad");
+        <input type="submit" value="Ara" class="btn btn-primary" />
+
+    </strong>
+
+}
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Personel Id</th>
+        <th>TC KİMLİK NO</th>
+        <th>AD</th>
+        <th>SOYAD</th>
+        <th>DEPARTMAN ADI</th>
+        <th>ÇOCUK TC</th>
+        <th>ÇOCUK ADI - SOYADI</th>
+        <th>ÇOCUK DOĞUM TARİHİ</th>
+        <th>ÇOCUK CİNSİYET</th>     
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+        <tr>
+            <td>@x.Id</td>
+            <td>@x.PersonelOzlukBilgileri.Id</td>
+            <td>@x.PersonelOzlukBilgileri.TcKimlik </td>
+            <td>@x.PersonelOzlukBilgileri.Ad</td>
+            <td>@x.PersonelOzlukBilgileri.Soyad</td>
+            <td>@x.PersonelOzlukBilgileri.Departmanlar.DepartmanAdi</td>
+            <td>@x.CocukTc</td>
+            <td>@x.CocukAdiSoyadi</td>
+            <td>@x.CocukDogumTarihi</td>
+            <td>
+                @if (@x.CocukCinsiyet == false)
+                {
+                    ViewBag.a = "Erkek";
+                }
+                else if (@x.CocukCinsiyet== true)
+                {
+                    ViewBag.a = "Kız";
+                }
+                else
+                {
+                    ViewBag.a = "";
+                }
+              
+                @ViewBag.a
+            </td>
+
+            <td>
+                @Html.ActionLink("SİL", "Sil", new { id = x.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Personel Çocuk Kaydını Silmek İstediğinize emin misiniz?')" })
+
+            </td>
+            <td>
+                <a href="/PersonelCocuk/GetirGuncelle/@x.Id" class="btn btn-success">GÜNCELLE</a>
+            </td>
+        </tr>
+    }
+</table>
+<font size="4" color="red" face="Arial" class="text-danger"> @TempData["Warning"] </font>
+<a href="/PersonelCocuk/EkleListe/" class="btn btn-primary">Çocuk Ekle</a>
+
+

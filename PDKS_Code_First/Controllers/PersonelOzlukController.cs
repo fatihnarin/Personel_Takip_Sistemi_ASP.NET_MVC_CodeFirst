@@ -18,7 +18,7 @@ namespace PDKS_Code_First.Controllers
         public ActionResult Listele(int sayfa=1)
         {
 
-            var personelozlukliste = db.PersonelOzlukBilgileri.ToList().ToPagedList(sayfa,3);     
+            var personelozlukliste = db.PersonelOzlukBilgileri.ToList().ToPagedList(sayfa,10);     
             return View(personelozlukliste);
         }
 
@@ -126,7 +126,7 @@ namespace PDKS_Code_First.Controllers
         }
 
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Sil(int id)
         {
             var durum1 = db.IzinTakip.FirstOrDefault(x => x.PersonelId == id);
@@ -150,7 +150,7 @@ namespace PDKS_Code_First.Controllers
                 return RedirectToAction("Listele");
             }
         }
-        [Authorize]
+        //[Authorize]
         public ActionResult Getir(int id)
         {
             ViewBag.drop = DepartmanList(); //controlerdan view e taşımak için

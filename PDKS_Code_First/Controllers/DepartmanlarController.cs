@@ -14,13 +14,13 @@ namespace PDKS_Code_First.Controllers
         // GET: Departmanlar
         PDKSCodeFirstContext db = new PDKSCodeFirstContext();
         
-        [Authorize]
+        //[Authorize]
         public ActionResult Listele(int sayfa=1)
         {
-            var departmanlarliste = db.Departmanlar.ToList().ToPagedList(sayfa, 3);
+            var departmanlarliste = db.Departmanlar.ToList().ToPagedList(sayfa, 10);
             return View(departmanlarliste);
         }
-        [Authorize]
+        //[Authorize]
         public ActionResult Ekle()
         {
             return View();
@@ -50,7 +50,7 @@ namespace PDKS_Code_First.Controllers
                 return View("Ekle");
             }           
         }
-        [Authorize]
+        //[Authorize]
         public ActionResult Sil(int id)
         {
             try
@@ -80,7 +80,7 @@ namespace PDKS_Code_First.Controllers
          
             
         }
-        [Authorize]
+        //[Authorize]
         public ActionResult Getir(int id)
         {
            
@@ -88,7 +88,7 @@ namespace PDKS_Code_First.Controllers
             return View("Getir", departman);
         }
 
-        [Authorize]
+        //[Authorize]
         public ActionResult Guncelle(Departmanlar departman)
         {
             try

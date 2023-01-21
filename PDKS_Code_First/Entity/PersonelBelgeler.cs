@@ -26,11 +26,11 @@ namespace PDKS_Code_First.Entity
         public virtual PersonelOzlukBilgileri PersonelOzlukBilgileri { get; set; }
         public enum belgetipi : byte
         {
-            Vesikalık = 1,
-            İkahmetgah = 2,
-            AdliSicil = 3,
-            Diploma = 4,
-            Kimlik_Fotokopisi = 5
+            Vesikalık = 0,
+            İkahmetgah = 1,
+            AdliSicil =2 ,
+            Diploma = 3,
+            Kimlik_Fotokopisi = 4
         }
     }
 }

@@ -1,0 +1,61 @@
+﻿@using PDKS_Code_First.Entity
+@model List<PersonelEgitim>
+@{
+    ViewBag.Title = "Listele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("Listele", "PersonelEgitim", FormMethod.Get))
+{
+
+    <strong>
+        TC Kimlik No : @Html.TextBox("tc");
+
+        Ad : @Html.TextBox("ad");
+
+        Soyad : @Html.TextBox("soyad");
+        <input type="submit" value="Ara" class="btn btn-primary" />
+
+    </strong>
+
+}
+<br />
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>Personel Id</th>
+        <th>TC KİMLİK NO</th>
+        <th>AD</th>
+        <th>SOYAD</th>
+        <th>DEPARTMAN ADI</th>
+        <th>EĞİTİM DURUMU</th>
+        <th>SON MEZUN OLDUĞU OKUL</th>
+        <th>SİL</th>
+        <th>GÜNCELLE</th>
+    </tr>
+    @foreach (var x in Model)
+    {
+<tr>
+    <td>@x.Id</td>
+    <td>@x.PersonelOzlukBilgileri.Id</td>
+    <td>@x.PersonelOzlukBilgileri.TcKimlik </td>
+    <td>@x.PersonelOzlukBilgileri.Ad</td>
+    <td>@x.PersonelOzlukBilgileri.Soyad</td>
+    <td>@x.PersonelOzlukBilgileri.Departmanlar.DepartmanAdi</td>
+    <td>@x.EgitimDurumu</td>
+    <td>@x.SonMezunOlduguUkulAdı</td>
+
+    <td>
+        @Html.ActionLink("SİL", "Sil", new { id = x.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Personel Eğitim Kaydını Silmek İstediğinize emin misiniz?')" })
+
+    </td>
+    <td>
+        <a href="/PersonelEgitim/GetirGuncelle/@x.Id" class="btn btn-success">GÜNCELLE</a>
+    </td>
+</tr>
+    }
+</table>
+<font size="4" color="red" face="Arial" class="text-danger"> @TempData["Warning"] </font>
+<a href="/PersonelEgitim/EkleListe/" class="btn btn-primary">Eğitim Bilgisi Ekle</a>
+

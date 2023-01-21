@@ -24,11 +24,8 @@ namespace PDKS_Code_First.Entity
         public int Id { get; set; }
 
         [Required]
-        [StringLength(11)]
-        //[Required(ErrorMessage = "Zorunlu Alan !")]
         [MaxLength(11, ErrorMessage = "TC kimlik numarası 11 haneli olmalıdır!")]
         [MinLength(11, ErrorMessage = "TC kimlik numarası 11 haneli olmalıdır!")]
-        //[Display(Name = "Tc Kimlik Numarası")]
         [RegularExpression(@"[0-9]+$", ErrorMessage = "Lütfen Sadece Sayı Değerlerini Giriniz")]
         public string TcKimlik { get; set; }
 
@@ -36,7 +33,7 @@ namespace PDKS_Code_First.Entity
         [StringLength(25)]
         [MinLength(2, ErrorMessage = "İsim alanı en az 2 Karakter olmalıdır !")]
         [MaxLength(25, ErrorMessage = "İsim alanı en fazla 25 Karakter olmalıdır !")]
-        [RegularExpression(("[a-zA-Z çüöğşıİĞÇÜŞ]*"), ErrorMessage = "Sadece harf kullanınız!")]
+        [RegularExpression(("[a-zA-Z çÇğĞıİöOşŞüÜ ]*"), ErrorMessage = "Sadece harf kullanınız!")]
 
         public string Ad { get; set; }
 
@@ -44,22 +41,21 @@ namespace PDKS_Code_First.Entity
         [StringLength(25)]
         [MinLength(2, ErrorMessage = "Soyisim alanı en az 2 Karakter olmalıdır !")]
         [MaxLength(25, ErrorMessage = "Soyisim alanı en fazla 25 Karakter olmalıdır !")]
-        [RegularExpression(@"[a-zA-Z çüöğşıİĞÇÜŞ]*", ErrorMessage = "Sadece harf kullanınız!")]
+        [RegularExpression(("[a-zA-Z çÇğĞıİöOşŞüÜ ]*"), ErrorMessage = "Sadece harf kullanınız!")]
 
         public string Soyad { get; set; }
 
-       
 
+        [Required(ErrorMessage = "Cinsiyet alanı boş bırakılamaz")]
         public bool Cinsiyet { get; set; }
+       
         [Required]
         [StringLength(20)]
         [MinLength(2, ErrorMessage = "Unvan alanı en az 2 Karakter olmalıdır !")]
         [MaxLength(20, ErrorMessage = "Unvan alanı en fazla 20 Karakter olmalıdır !")]
-        [RegularExpression(("[a-zA-Z çüöğşıİĞÇÜŞ]*"), ErrorMessage = "Sadece harf kullanınız!")]
         public string Unvan { get; set; }
 
-        [Required]
-        [StringLength(7)]
+
         [MinLength(7, ErrorMessage = "Kurum Sicil No 7 karakter olmalıdır!")]
         [MaxLength(7, ErrorMessage = "Kurum Sicil No 7 karakter olmalıdır!")]
         [RegularExpression(@"[0-9]+$", ErrorMessage = "Lütfen Sadece Sayı Değerlerini Giriniz")]
@@ -70,8 +66,6 @@ namespace PDKS_Code_First.Entity
         [StringLength(16)]
         [MaxLength(16, ErrorMessage = "Maksimum 16 karakter giriniz!")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "Geçerli Bir Telefon No Giriniz")]
-
-
         public string CepTelefonu { get; set; }
 
         [Required]
@@ -81,9 +75,10 @@ namespace PDKS_Code_First.Entity
 
         public string Eposta { get; set; }
 
+        [Required(ErrorMessage = "Medeni durum boş bırakılamaz")]
         public bool MedeniDurum { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Ev adresi boş bırakılamaz")]
         public string EvAdresi { get; set; }
 
 
@@ -97,17 +92,22 @@ namespace PDKS_Code_First.Entity
         [MaxLength(10, ErrorMessage = "En fazla 10 karakter olmalı!")]
         public string Ehliyet { get; set; }
 
-        
+
+        [Required(ErrorMessage = "Engel durumu boş bırakılamaz")]
         public bool EngellilikDurumu { get; set; }
 
+        [Required(ErrorMessage = "Departman alanı boş bırakılamaz")]
         public byte DepartmanId { get; set; }
 
+        [Required(ErrorMessage = "Doğum tarihi boş bırakılamaz")]
         [Column(TypeName = "smalldatetime")]
         public DateTime DogumTarihi { get; set; }
-
+        
+        [Required(ErrorMessage = "İşe giriş tarihi boş bırakılamaz")]
         [Column(TypeName = "smalldatetime")]
         public DateTime İseGirisTarihi { get; set; }
 
+        [Required(ErrorMessage = "Zorunlu alana!!")]
         public bool AktifPasif { get; set; }
 
         [Column(TypeName = "smalldatetime")]
@@ -117,12 +117,11 @@ namespace PDKS_Code_First.Entity
         [MaxLength(11, ErrorMessage = "TC kimlik numarası 11 haneli olmalıdır!")]
         [MinLength(11, ErrorMessage = "TC kimlik numarası 11 haneli olmalıdır!")]
         [RegularExpression(@"[0-9]+$", ErrorMessage = "Lütfen Sadece Sayı Değerlerini Giriniz")]
-
         public string EsiTc { get; set; }
 
         [StringLength(50)]
         [MaxLength(50, ErrorMessage = "Ad Soyad alanı en fazla 50 Karakter olmalıdır !")]
-        [RegularExpression(@"[a-zA-Z çüöğşıİĞÇÜŞ]*", ErrorMessage = "Sadece harf kullanınız!")]
+        [RegularExpression(("[a-zA-Z çÇğĞıİöOşŞüÜ ]*"), ErrorMessage = "Sadece harf kullanınız!")]
 
         public string EsiAdiSoyadi { get; set; }
 

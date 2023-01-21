@@ -50,9 +50,13 @@
                 {
                     ViewBag.a = "Erkek";
                 }
-                else
+                else if(x.Cinsiyet==true)
                 {
                     ViewBag.a = "Kadın";
+                }
+                else
+                {
+                    ViewBag.a = "";
                 }
                 @ViewBag.a
             <td>@x.CepTelefonu</td>

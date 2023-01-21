@@ -138,9 +138,12 @@
     <Compile Include="Controllers\AnaSayfaController.cs" />
     <Compile Include="Controllers\BelgelerController.cs" />
     <Compile Include="Controllers\DepartmanlarController.cs" />
+    <Compile Include="Controllers\PersonelEgitimController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PersonelCocukController.cs" />
     <Compile Include="Controllers\PersonelKiyafetController.cs" />
     <Compile Include="Controllers\PersonelOzlukController.cs" />
+    <Compile Include="Controllers\PersonelSaglikController.cs" />
     <Compile Include="Controllers\İzinTakipController.cs" />
     <Compile Include="Entity\Departmanlar.cs" />
     <Compile Include="Entity\IzinTakip.cs" />
@@ -160,6 +163,18 @@
     <Compile Include="Migrations\202301192211352_tekrar.cs" />
     <Compile Include="Migrations\202301192211352_tekrar.Designer.cs">
       <DependentUpon>202301192211352_tekrar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301211012085_cocuktabloguncelleme.cs" />
+    <Compile Include="Migrations\202301211012085_cocuktabloguncelleme.Designer.cs">
+      <DependentUpon>202301211012085_cocuktabloguncelleme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301211515253_Egitim_saglik_tablosuvedigertablolardaguncelleme.cs" />
+    <Compile Include="Migrations\202301211515253_Egitim_saglik_tablosuvedigertablolardaguncelleme.Designer.cs">
+      <DependentUpon>202301211515253_Egitim_saglik_tablosuvedigertablolardaguncelleme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301211517555_egitimtablo.cs" />
+    <Compile Include="Migrations\202301211517555_egitimtablo.Designer.cs">
+      <DependentUpon>202301211517555_egitimtablo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -242,6 +257,18 @@
     <Content Include="Views\PersonelKiyafet\GetirEkle.cshtml" />
     <Content Include="Views\PersonelKiyafet\GetirGuncelle.cshtml" />
     <Content Include="Views\Belgeler\Listele.cshtml" />
+    <Content Include="Views\PersonelCocuk\Listele.cshtml" />
+    <Content Include="Views\PersonelCocuk\EkleListe.cshtml" />
+    <Content Include="Views\PersonelCocuk\GetirEkle.cshtml" />
+    <Content Include="Views\PersonelCocuk\GetirGuncelle.cshtml" />
+    <Content Include="Views\PersonelEgitim\Listele.cshtml" />
+    <Content Include="Views\PersonelEgitim\EkleListe.cshtml" />
+    <Content Include="Views\PersonelEgitim\GetirEkle.cshtml" />
+    <Content Include="Views\PersonelEgitim\GetirGuncelle.cshtml" />
+    <Content Include="Views\PersonelSaglik\Listele.cshtml" />
+    <Content Include="Views\PersonelSaglik\EkleListe.cshtml" />
+    <Content Include="Views\PersonelSaglik\GetirEkle.cshtml" />
+    <Content Include="Views\PersonelSaglik\GetirGuncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -263,6 +290,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202301192211352_tekrar.resx">
       <DependentUpon>202301192211352_tekrar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301211012085_cocuktabloguncelleme.resx">
+      <DependentUpon>202301211012085_cocuktabloguncelleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301211515253_Egitim_saglik_tablosuvedigertablolardaguncelleme.resx">
+      <DependentUpon>202301211515253_Egitim_saglik_tablosuvedigertablolardaguncelleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301211517555_egitimtablo.resx">
+      <DependentUpon>202301211517555_egitimtablo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
