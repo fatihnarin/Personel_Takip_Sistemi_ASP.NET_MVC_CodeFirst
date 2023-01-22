@@ -12,6 +12,7 @@ namespace PDKS_Code_First.Controllers
     {
         // GET: İzinTakip
         PDKSCodeFirstContext db = new PDKSCodeFirstContext();
+        [Authorize]
         public ActionResult Listele(string tc, string ad, string soyad)
         {
             var personelizin = from x in db.IzinTakip select x;
@@ -19,9 +20,10 @@ namespace PDKS_Code_First.Controllers
             {
                 personelizin = personelizin.Where(x => x.PersonelOzlukBilgileri.TcKimlik.Contains(tc) && x.PersonelOzlukBilgileri.Ad.Contains(ad) && x.PersonelOzlukBilgileri.Soyad.Contains(soyad));
             }
-
             return View(personelizin.ToList());
         }
+
+        [Authorize]
         public ActionResult EkleListe(string tc, string ad, string soyad)
         {
             var personelizin = from x in db.PersonelOzlukBilgileri select x;
@@ -29,16 +31,14 @@ namespace PDKS_Code_First.Controllers
             {
                 personelizin = personelizin.Where(x => x.TcKimlik.Contains(tc) && x.Ad.Contains(ad) && x.Soyad.Contains(soyad));
             }
-
             return View(personelizin.ToList());
         }
+       
+        [Authorize]
         public ActionResult GetirEkle(int id)
         {
-           
             IzinTakipView ızinTakipView = new IzinTakipView();
-            
             return View("GetirEkle", GetirekleMetot(ızinTakipView, id));
-
         }
 
         private IzinTakipView GetirekleMetot(IzinTakipView ızinTakipView, int id)
@@ -53,61 +53,42 @@ namespace PDKS_Code_First.Controllers
             return ızinTakipView;
         }
 
-        public ActionResult Ekle(IzinTakipView ızinTakipView )
+
+        public ActionResult Ekle(IzinTakipView ızinTakipView)
         {
             try
             {
                 IzinTakip ızinTakip = new IzinTakip();
-                
-                if (ızinTakipView.talep!=null && ızinTakipView.bas!=null&& ızinTakipView.son!=null)
+                if (ızinTakipView.talep > ızinTakipView.bas)
                 {
-                    if (ızinTakipView.talep > ızinTakipView.bas)
-                    {
-                        ViewBag.talep = "Talep izin başlangıçından sonra olamaz";
-                        return View("GetirEkle", GetirekleMetot(ızinTakipView, ızinTakipView.PersonelId));
-                      
-                    }
-                    else if (ızinTakipView.bas >= ızinTakipView.son)
-                    {
-                        ViewBag.bas = "İzin başlangıcı bitiş tarihine eşit veya sonra olamaz";
-                        ViewBag.son = "İzin bitişi başlangıç tarihine eşit veya sonra olamaz";
-                        return View("GetirEkle", GetirekleMetot(ızinTakipView, ızinTakipView.PersonelId));
-                    }
-                    else if (ızinTakipView.tip == 0)
-                    {
-                        ViewBag.tip = "İzin tip boş olomaz";
-                        return View("GetirEkle", GetirekleMetot(ızinTakipView, ızinTakipView.PersonelId));
-                    }
-                    else
-                    {
-                        TimeSpan fark = Convert.ToDateTime(ızinTakipView.son) - Convert.ToDateTime(ızinTakipView.bas);
-                        ızinTakip.IzinliGunSayisi = Convert.ToByte(fark.TotalDays);
-                        ızinTakip.PersonelId = ızinTakipView.PersonelId;
-                        ızinTakip.IzinTalepTarihi = ızinTakipView.talep;
-                        ızinTakip.IzinBaslangicTarihi = ızinTakipView.bas;
-                        ızinTakip.İzinBitisTarihi = ızinTakipView.son;
-                        ızinTakip.IzinTipi = ızinTakipView.tip;
-                        db.IzinTakip.Add(ızinTakip);
-                        db.SaveChanges();
-                        return RedirectToAction("Listele");
-                    }
+                    ViewBag.talep = "Talep izin başlangıçından sonra olamaz";
+                    return View("GetirEkle", GetirekleMetot(ızinTakipView, ızinTakipView.PersonelId));
+                }
+                else if (ızinTakipView.bas >= ızinTakipView.son)
+                {
+                    ViewBag.bas = "İzin başlangıcı bitiş tarihine eşit veya sonra olamaz";
+                    ViewBag.son = "İzin bitişi başlangıç tarihine eşit veya sonra olamaz";
+                    return View("GetirEkle", GetirekleMetot(ızinTakipView, ızinTakipView.PersonelId));
                 }
                 else
                 {
-                    ViewBag.tarih = "tarih alanları boş olomaz";
-                    return View("GetirEkle", GetirekleMetot(ızinTakipView, ızinTakipView.PersonelId));
+                    TimeSpan fark = Convert.ToDateTime(ızinTakipView.son) - Convert.ToDateTime(ızinTakipView.bas);
+                    ızinTakip.IzinliGunSayisi = Convert.ToByte(fark.TotalDays);
+                    ızinTakip.PersonelId = ızinTakipView.PersonelId;
+                    ızinTakip.IzinTalepTarihi = ızinTakipView.talep;
+                    ızinTakip.IzinBaslangicTarihi = ızinTakipView.bas;
+                    ızinTakip.İzinBitisTarihi = ızinTakipView.son;
+                    ızinTakip.IzinTipi = ızinTakipView.tip;
+                    db.IzinTakip.Add(ızinTakip);
+                    db.SaveChanges();
+                    return RedirectToAction("Listele");
                 }
-
-               
             }
             catch (Exception ex)
             {
                 TempData["Warning"] = "Hata !!" + ex.Message;
                 return View("GetirEkle", GetirekleMetot(ızinTakipView, ızinTakipView.PersonelId));
             }
-           
-            
-
         }
         public ActionResult Sil(int id)
         {
@@ -123,18 +104,16 @@ namespace PDKS_Code_First.Controllers
                 TempData["Warning"] = "Hata !!" + ex.Message;
                 return View();
             }
-            
         }
 
+        [Authorize]
         public ActionResult GetirGuncelle(int id)
         {
-
             IzinTakipView ızinTakipView = new IzinTakipView();
             return View("GetirGuncelle", GetirGuncelleMetot(ızinTakipView, id));
         }
         private IzinTakipView GetirGuncelleMetot(IzinTakipView ızinTakipView, int id)
         {
-
             var izin = db.IzinTakip.Find(id);
             var personel = db.PersonelOzlukBilgileri.Find(izin.PersonelId);
 
@@ -155,60 +134,38 @@ namespace PDKS_Code_First.Controllers
         {
             try
             {
-               
-
-                if (ızinTakipView.talep != null && ızinTakipView.bas != null && ızinTakipView.son != null)
+                if (ızinTakipView.talep > ızinTakipView.bas)
                 {
-                    if (ızinTakipView.talep > ızinTakipView.bas)
-                    {
-                        ViewBag.talep = "Talep izin başlangıçından sonra olamaz";
-                        return View("GetirGuncelle", GetirGuncelleMetot(ızinTakipView, ızinTakipView.PersonelId));
+                    ViewBag.talep = "Talep izin başlangıçından sonra olamaz";
+                    return View("GetirGuncelle", GetirGuncelleMetot(ızinTakipView, ızinTakipView.PersonelId));
 
-                    }
-                    else if (ızinTakipView.bas >= ızinTakipView.son)
-                    {
-                        ViewBag.bas = "İzin başlangıcı bitiş tarihine eşit veya sonra olamaz";
-                        ViewBag.son = "İzin bitişi başlangıç tarihine eşit veya sonra olamaz";
-                        return View("GetirGuncelle", GetirGuncelleMetot(ızinTakipView, ızinTakipView.PersonelId));
-                    }
-                    else if (ızinTakipView.tip == 0)
-                    {
-                        ViewBag.tip = "İzin tip boş olomaz";
-                        return View("GetirGuncelle", GetirGuncelleMetot(ızinTakipView, ızinTakipView.PersonelId));
-                    }
-                    else
-                    {
-                        var ızinTakip = db.IzinTakip.FirstOrDefault(x => x.Id == ızinTakipView.izintakipid);
-                        TimeSpan fark = Convert.ToDateTime(ızinTakipView.son) - Convert.ToDateTime(ızinTakipView.bas);
-                        ızinTakip.IzinliGunSayisi = Convert.ToByte(fark.TotalDays);
-                        ızinTakip.PersonelId = ızinTakipView.PersonelId;
-                        ızinTakip.IzinTalepTarihi = ızinTakipView.talep;
-                        ızinTakip.IzinBaslangicTarihi = ızinTakipView.bas;
-                        ızinTakip.İzinBitisTarihi = ızinTakipView.son;
-                        ızinTakip.IzinTipi = ızinTakipView.tip;
-                        //db.IzinTakip.Add(ızinTakip);
-                        db.SaveChanges();
-                        return RedirectToAction("Listele");
-                    }
+                }
+                else if (ızinTakipView.bas >= ızinTakipView.son)
+                {
+                    ViewBag.bas = "İzin başlangıcı bitiş tarihine eşit veya sonra olamaz";
+                    ViewBag.son = "İzin bitişi başlangıç tarihine eşit veya sonra olamaz";
+                    return View("GetirGuncelle", GetirGuncelleMetot(ızinTakipView, ızinTakipView.PersonelId));
                 }
                 else
                 {
-                    ViewBag.tarih = "tarih alanları boş olomaz";
-                    return View("GetirGuncelle", GetirGuncelleMetot(ızinTakipView, ızinTakipView.PersonelId));
+                    var ızinTakip = db.IzinTakip.FirstOrDefault(x => x.Id == ızinTakipView.izintakipid);
+                    TimeSpan fark = Convert.ToDateTime(ızinTakipView.son) - Convert.ToDateTime(ızinTakipView.bas);
+                    ızinTakip.IzinliGunSayisi = Convert.ToByte(fark.TotalDays);
+                    ızinTakip.PersonelId = ızinTakipView.PersonelId;
+                    ızinTakip.IzinTalepTarihi = ızinTakipView.talep;
+                    ızinTakip.IzinBaslangicTarihi = ızinTakipView.bas;
+                    ızinTakip.İzinBitisTarihi = ızinTakipView.son;
+                    ızinTakip.IzinTipi = ızinTakipView.tip;
+
+                    db.SaveChanges();
+                    return RedirectToAction("Listele");
                 }
-
-
             }
             catch (Exception ex)
             {
                 TempData["Warning"] = "Hata !!" + ex.Message;
                 return View("GetirGuncelle", GetirGuncelleMetot(ızinTakipView, ızinTakipView.PersonelId));
             }
-
-
-
         }
-
-
     }
 }

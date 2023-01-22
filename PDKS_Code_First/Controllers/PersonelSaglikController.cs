@@ -12,6 +12,8 @@ namespace PDKS_Code_First.Controllers
     {
         // GET: PersonelSaglik
         PDKSCodeFirstContext db = new PDKSCodeFirstContext();
+        
+        [Authorize]
         public ActionResult Listele(string tc, string ad, string soyad)
         {
             var personelsaglik = from x in db.PersonelSaglikDurumlari select x;
@@ -22,6 +24,8 @@ namespace PDKS_Code_First.Controllers
 
             return View(personelsaglik.ToList());
         }
+
+        [Authorize]
         public ActionResult EkleListe(string tc, string ad, string soyad)
         {
             var personelsaglik = from x in db.PersonelOzlukBilgileri select x;
@@ -33,6 +37,7 @@ namespace PDKS_Code_First.Controllers
             return View(personelsaglik.ToList());
         }
 
+        [Authorize]
         public ActionResult GetirEkle(int id)
         {
 
@@ -111,6 +116,7 @@ namespace PDKS_Code_First.Controllers
 
         }
 
+        [Authorize]
         public ActionResult GetirGuncelle(int id)
         {
 

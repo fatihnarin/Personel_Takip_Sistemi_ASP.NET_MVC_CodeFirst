@@ -56,7 +56,7 @@
                 @Html.EditorFor(model => model.talep, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.talep, "", new { @class = "text-danger" })
                 <font size="2" color="red" face="Arial" class="text-danger"> @ViewBag.talep</font>
-                <font size="2" color="red" face="Arial" class="text-danger"> @ViewBag.tarih</font>
+
             </div>
         </div>
         <div class="form-group">
@@ -65,7 +65,7 @@
                 @Html.EditorFor(model => model.bas, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.bas, "", new { @class = "text-danger" })
                 <font size="2" color="red" face="Arial" class="text-danger"> @ViewBag.bas</font>
-                <font size="2" color="red" face="Arial" class="text-danger"> @ViewBag.tarih</font>
+           
             </div>
         </div>
         <div class="form-group">
@@ -74,7 +74,7 @@
                 @Html.EditorFor(model => model.son, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.son, "", new { @class = "text-danger" })
                 <font size="2" color="red" face="Arial" class="text-danger"> @ViewBag.son</font>
-                <font size="2" color="red" face="Arial" class="text-danger"> @ViewBag.tarih</font>
+       
             </div>
         </div>
 
@@ -83,7 +83,7 @@
             <div class="col-md-4">
                 @Html.EnumDropDownListFor(model => model.tip, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.tip, "", new { @class = "text-danger" })
-                <font size="2" color="red" face="Arial" class="text-danger"> @ViewBag.tip</font>
+             
             </div>
         </div>
         <font size="4" color="red" face="Arial" class="text-danger"> @TempData["Warning"] </font>

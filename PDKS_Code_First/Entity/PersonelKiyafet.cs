@@ -21,8 +21,10 @@ namespace PDKS_Code_First.Entity
         [Required(ErrorMessage = "Ýstek nedeni boþ býrakýlamaz")]
         public string IstekNedeni { get; set; }
 
+
         public Renkler Renk { get; set; }
 
+        [Required(ErrorMessage = "Zorunlu Alan!!")]
         public kiymodel Model { get; set; }
 
         public UstBeden UstBedenNo { get; set; }
@@ -73,9 +75,9 @@ namespace PDKS_Code_First.Entity
         }
         public enum kiymodel:byte
         {
-            DarKesim=1,
-            NormalKesim=2,
-            BolKesim=3
+            DarKesim=0,
+            NormalKesim=1,
+            BolKesim=2
         }
 
     }

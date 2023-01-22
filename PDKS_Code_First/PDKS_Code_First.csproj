@@ -176,6 +176,30 @@
     <Compile Include="Migrations\202301211517555_egitimtablo.Designer.cs">
       <DependentUpon>202301211517555_egitimtablo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202301220954422_belgeler.cs" />
+    <Compile Include="Migrations\202301220954422_belgeler.Designer.cs">
+      <DependentUpon>202301220954422_belgeler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301220956080_belgelerguncelleme.cs" />
+    <Compile Include="Migrations\202301220956080_belgelerguncelleme.Designer.cs">
+      <DependentUpon>202301220956080_belgelerguncelleme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301221009446_belgelerdegisiklik.cs" />
+    <Compile Include="Migrations\202301221009446_belgelerdegisiklik.Designer.cs">
+      <DependentUpon>202301221009446_belgelerdegisiklik.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301221026146_belgedeneme.cs" />
+    <Compile Include="Migrations\202301221026146_belgedeneme.Designer.cs">
+      <DependentUpon>202301221026146_belgedeneme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301221118448_belgelertablosugıncelleme.cs" />
+    <Compile Include="Migrations\202301221118448_belgelertablosugıncelleme.Designer.cs">
+      <DependentUpon>202301221118448_belgelertablosugıncelleme.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202301221351302_kiyafettablo.cs" />
+    <Compile Include="Migrations\202301221351302_kiyafettablo.Designer.cs">
+      <DependentUpon>202301221351302_kiyafettablo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -269,6 +293,9 @@
     <Content Include="Views\PersonelSaglik\EkleListe.cshtml" />
     <Content Include="Views\PersonelSaglik\GetirEkle.cshtml" />
     <Content Include="Views\PersonelSaglik\GetirGuncelle.cshtml" />
+    <Content Include="Views\Belgeler\EkleListe.cshtml" />
+    <Content Include="Views\Belgeler\GetirEkle.cshtml" />
+    <Content Include="Views\Belgeler\GetirGuncelle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -299,6 +326,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202301211517555_egitimtablo.resx">
       <DependentUpon>202301211517555_egitimtablo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301220954422_belgeler.resx">
+      <DependentUpon>202301220954422_belgeler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301220956080_belgelerguncelleme.resx">
+      <DependentUpon>202301220956080_belgelerguncelleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301221009446_belgelerdegisiklik.resx">
+      <DependentUpon>202301221009446_belgelerdegisiklik.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301221026146_belgedeneme.resx">
+      <DependentUpon>202301221026146_belgedeneme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301221118448_belgelertablosugıncelleme.resx">
+      <DependentUpon>202301221118448_belgelertablosugıncelleme.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202301221351302_kiyafettablo.resx">
+      <DependentUpon>202301221351302_kiyafettablo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

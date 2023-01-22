@@ -1,0 +1,78 @@
+﻿@model PDKS_Code_First.Classes.Class1.PersonelBelgelerView
+@{
+    ViewBag.Title = "GetirEkle";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Ekle", "Belgeler", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <h2>Personel BelgeEkleme</h2>
+    <br />
+
+    <br />
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PersonelId, "Personel Id", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.PersonelId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.HiddenFor(model => model.PersonelId, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tc, "TC Kimlik No", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Tc, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ad, "Ad ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Ad, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Soyad, "Soyad ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Soyad, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Departmanad, "Departman Adı ", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.DisplayFor(model => model.Departmanad, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BelgeTuru, "Belge Türü", new { @class = "control-label col-md-2" })
+            <div class="col-md-4">
+                @Html.EnumDropDownListFor(model => model.BelgeTuru, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BelgeTuru, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-lg-2" ><label for="fileUpload">Dosya Seçin:</label></div>
+            <div class="col-lg-4"><input type="file" name="file" id="file" /></div>
+
+        </div>
+            <font size="2" color="red" face="Arial" class="text-danger"> @ViewBag.dosya</font>
+            <font size="4" color="red" face="Arial" class="text-danger"> @TempData["Warning"] </font>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-8">
+
+                    <button new {class="btn btn-success" , onclick="return confirm('Personel Belge Kaydını Yapmak İstediğinize emin misiniz?')">BELGE KAYDET</button>
+                </div>
+            </div>
+
+        </div>
+
+}
+<div>
+    @Html.ActionLink("Geri Dön", "EkleListe")
+</div>
+

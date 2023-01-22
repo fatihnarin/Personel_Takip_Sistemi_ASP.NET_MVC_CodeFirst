@@ -12,6 +12,8 @@ namespace PDKS_Code_First.Controllers
     {
         // GET: PersonelKiyafet
         PDKSCodeFirstContext db = new PDKSCodeFirstContext();
+
+        [Authorize]
         public ActionResult Listele(string tc, string ad, string soyad)
         {
             var personelkiyafet = from x in db.PersonelKiyafet select x;
@@ -23,6 +25,7 @@ namespace PDKS_Code_First.Controllers
             return View(personelkiyafet.ToList());
         }
 
+        [Authorize]
         public ActionResult EkleListe(string tc, string ad, string soyad)
         {
             var personelkiyafet = from x in db.PersonelOzlukBilgileri select x;
@@ -34,6 +37,7 @@ namespace PDKS_Code_First.Controllers
             return View(personelkiyafet.ToList());
         }
 
+        [Authorize]
         public ActionResult GetirEkle(int id)
         {
 
@@ -61,15 +65,7 @@ namespace PDKS_Code_First.Controllers
         {
             try
             {
-                if (personelKiyafetView.Isteknedeni == null || personelKiyafetView.Renk == 0 || personelKiyafetView.Model == 0)
-                {
-                    ViewBag.istek = "İstek nedeni boş olomaz";
-                    ViewBag.model = "Model boş olomaz";
-                    ViewBag.renk = "Renk boş olomaz";
-                    return View("GetirEkle", GetirekleMetot(personelKiyafetView, personelKiyafetView.PersonelId));
-                }
-                else
-                {
+             
                     PersonelKiyafet personelKiyafet = new PersonelKiyafet();
                     personelKiyafet.PersonelId = personelKiyafetView.PersonelId;
                     personelKiyafet.DepartmanId = personelKiyafetView.DepartmanId;
@@ -85,7 +81,7 @@ namespace PDKS_Code_First.Controllers
                     db.PersonelKiyafet.Add(personelKiyafet);
                     db.SaveChanges();
                     return RedirectToAction("Listele");
-                }               
+                           
                 
             }
             catch (Exception ex)
@@ -112,6 +108,8 @@ namespace PDKS_Code_First.Controllers
             }
 
         }
+
+        [Authorize]
         public ActionResult GetirGuncelle(int id)
         {
 
@@ -147,16 +145,6 @@ namespace PDKS_Code_First.Controllers
         {
             try
             {
-                if (personelKiyafetView.Isteknedeni == null || personelKiyafetView.Renk == 0 || personelKiyafetView.Model == 0)
-                {
-                    ViewBag.istek = "İstek nedeni boş olomaz";
-                    ViewBag.model = "Model boş olomaz";
-                    ViewBag.renk = "Renk boş olomaz";
-                    return View("GetirGuncelle", GetirekleMetot(personelKiyafetView, personelKiyafetView.PersonelId));
-                }
-                else
-                {
-
                     var personelKiyafet = db.PersonelKiyafet.FirstOrDefault(x => x.Id == personelKiyafetView.kiyafetid);               
                     personelKiyafet.PersonelId = personelKiyafetView.PersonelId;
                     personelKiyafet.DepartmanId = personelKiyafetView.DepartmanId;
@@ -169,10 +157,9 @@ namespace PDKS_Code_First.Controllers
                     personelKiyafet.AltBedenNo = personelKiyafetView.AltBeden;
                     personelKiyafet.AyakkabiNo = personelKiyafetView.Ayakkapi;
                     personelKiyafet.Boy = personelKiyafetView.Boy;
-                    //db.PersonelKiyafet.Add(personelKiyafet);
+
                     db.SaveChanges();
                     return RedirectToAction("Listele");
-                }
 
             }
             catch (Exception ex)

@@ -1,11 +1,10 @@
-﻿@*@using PDKS_Code_First.Entity
+﻿@using PDKS_Code_First.Entity
 @model List<PersonelBelgeler>
 @{
     ViewBag.Title = "Listele";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-@using (Html.BeginForm("Listele", "PersonelKiyafet", FormMethod.Get))
+@using (Html.BeginForm("Listele", "Belgeler", FormMethod.Get))
 {
 
     <strong>
@@ -19,40 +18,52 @@
     </strong>
 
 }
-<table class="table table-bordered">
-    <tr>
-        <th>ID</th>
-        <th>Personel Id</th>
-        <th>TC KİMLİK NO</th>
-        <th>AD</th>
-        <th>SOYAD</th>
-        <th>DEPARTMAN ADI</th>
-        <th>BELGE ADI</th>
-        <th>DOSYA YOLU</th>
-        <th>BELGE TİPİ</th>       
-    </tr>
-    @foreach (var x in Model)
-    {
+<table class="table">
+    <thead>
         <tr>
-            <td>@x.Id</td>
-            <td>@x.PersonelOzlukBilgileri.Id</td>
-            <td>@x.PersonelOzlukBilgileri.TcKimlik </td>
-            <td>@x.PersonelOzlukBilgileri.Ad</td>
-            <td>@x.PersonelOzlukBilgileri.Soyad</td>
-            <td>@x.PersonelOzlukBilgileri.Departmanlar.DepartmanAdi</td>
-            <td>@x.BelgeAdi</td>
-            <td>@x.DosyaYolu</td>
-            <td>@x.BelgeTipi</td>
-            <td>
-                @Html.ActionLink("SİL", "Sil", new { id = x.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Personel Belge Kaydını Silmek İstediğinize emin misiniz?')" })
-
-            </td>
-            <td>
-                <a href="/Belgeler/GetirGuncelle/@x.Id" class="btn btn-success">GÜNCELLE</a>
-            </td>
+            <th>ID</th>
+            <th>Personel Id</th>
+            <th>TC KİMLİK NO</th>
+            <th>AD</th>
+            <th>SOYAD</th>
+            <th>DEPARTMAN ADI</th>
+            <th>BELGE ADI</th>
+            <th>BELGE TÜRÜ</th>
+            <th>BELGE TİPİ</th>
+            <th>BELGE YOLU</th>
+            <th>İNDİR</th>
+            <th>SİL</th>
+            <th>GÜNCELLE</th>
         </tr>
-    }
-</table>
-<font size="4" color="red" face="Arial" class="text-danger"> @TempData["Warning"] </font>
-<a href="/Belgeler/EkleListe/" class="btn btn-primary">EKLE</a>*@
+    </thead>
+    <tbody>
+        @foreach (var x in Model)
+        {
+            <tr>
+                <td>@x.Id</td>
+                <td>@x.PersonelOzlukBilgileri.Id</td>
+                <td>@x.PersonelOzlukBilgileri.TcKimlik </td>
+                <td>@x.PersonelOzlukBilgileri.Ad</td>
+                <td>@x.PersonelOzlukBilgileri.Soyad</td>
+                <td>@x.PersonelOzlukBilgileri.Departmanlar.DepartmanAdi</td>
+                <td>@x.BelgeAdi</td>
+                <td>@x.BelgeTuru</td>
+                <td>@x.BelgeTipi</td>
+                <th>@x.BelgeYolu</th>
+                <td>
+                    <a href="@Url.Action("Download", new { id = x.Id })" class="btn btn-default">İNDİR</a>
+                </td>
+                <td>
+                    @Html.ActionLink("SİL", "Sil", new { id = x.Id }, new { @class = "btn btn-danger", onclick = "return confirm('Personelin Kayıtlı Belgesini Silmek İstediğinize emin misiniz?')" })
 
+                </td>
+                <td>
+                    <a href="/Belgeler/GetirGuncelle/@x.Id" class="btn btn-success">GÜNCELLE</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<font size="4" color="red" face="Arial" class="text-danger"> @ViewBag.dosyabulunamadı</font>
+<font size="4" color="red" face="Arial" class="text-danger"> @TempData["Warning"] </font>
+<a href="/Belgeler/EkleListe/" class="btn btn-primary">Belge Ekle</a>

@@ -14,7 +14,8 @@ namespace PDKS_Code_First.Controllers
     {
         // GET: PersonelOzluk
         PDKSCodeFirstContext db = new PDKSCodeFirstContext();
-    
+
+        [Authorize]
         public ActionResult Listele(int sayfa=1)
         {
 
@@ -22,7 +23,8 @@ namespace PDKS_Code_First.Controllers
             return View(personelozlukliste);
         }
 
-     
+
+        [Authorize]
         public ActionResult Ara(string tc, string ad, string soyad)
         {
 
@@ -35,14 +37,15 @@ namespace PDKS_Code_First.Controllers
             return View(personel.ToList());
         }
 
-       
+        [Authorize]
         public ActionResult Ekle()
         {
             ViewBag.drop = DepartmanList(); //controlerdan view e taşımak için
             return View();
         }
+       
+        [Authorize]
         [HttpPost]
-      
         public ActionResult Ekle(PersonelOzlukBilgileri personel)
         {
 
@@ -126,7 +129,7 @@ namespace PDKS_Code_First.Controllers
         }
 
 
-        //[Authorize]
+       
         public ActionResult Sil(int id)
         {
             var durum1 = db.IzinTakip.FirstOrDefault(x => x.PersonelId == id);
@@ -150,7 +153,8 @@ namespace PDKS_Code_First.Controllers
                 return RedirectToAction("Listele");
             }
         }
-        //[Authorize]
+        
+        [Authorize]
         public ActionResult Getir(int id)
         {
             ViewBag.drop = DepartmanList(); //controlerdan view e taşımak için

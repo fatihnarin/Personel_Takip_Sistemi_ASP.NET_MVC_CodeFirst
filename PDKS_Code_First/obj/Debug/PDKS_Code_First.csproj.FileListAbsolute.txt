@@ -179,3 +179,9 @@ D:\BTKAKADEMİ\githubprojeler\PDKS_Code_First\PDKS_Code_First\obj\Debug\PDKS_Cod
 D:\BTKAKADEMİ\githubprojeler\PDKS_Code_First\PDKS_Code_First\obj\Debug\PDKS_Code_First.Migrations.cocuktabloguncelleme.resources
 D:\BTKAKADEMİ\githubprojeler\PDKS_Code_First\PDKS_Code_First\obj\Debug\PDKS_Code_First.Migrations.Egitim_saglik_tablosuvedigertablolardaguncelleme.resources
 D:\BTKAKADEMİ\githubprojeler\PDKS_Code_First\PDKS_Code_First\obj\Debug\PDKS_Code_First.Migrations.egitimtablo.resources
+D:\BTKAKADEMİ\githubprojeler\PDKS_Code_First\PDKS_Code_First\obj\Debug\PDKS_Code_First.Migrations.belgeler.resources
+D:\BTKAKADEMİ\githubprojeler\PDKS_Code_First\PDKS_Code_First\obj\Debug\PDKS_Code_First.Migrations.belgelerguncelleme.resources
+D:\BTKAKADEMİ\githubprojeler\PDKS_Code_First\PDKS_Code_First\obj\Debug\PDKS_Code_First.Migrations.belgelerdegisiklik.resources
+D:\BTKAKADEMİ\githubprojeler\PDKS_Code_First\PDKS_Code_First\obj\Debug\PDKS_Code_First.Migrations.belgedeneme.resources
+D:\BTKAKADEMİ\githubprojeler\PDKS_Code_First\PDKS_Code_First\obj\Debug\PDKS_Code_First.Migrations.belgelertablosugıncelleme.resources
+D:\BTKAKADEMİ\githubprojeler\PDKS_Code_First\PDKS_Code_First\obj\Debug\PDKS_Code_First.Migrations.kiyafettablo.resources

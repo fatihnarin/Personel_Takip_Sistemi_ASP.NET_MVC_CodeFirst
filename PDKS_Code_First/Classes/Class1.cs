@@ -28,7 +28,7 @@ namespace PDKS_Code_First.Classes
             public string kullaniciadi { get; set; }
             [Required(ErrorMessage = "Zorunlu Alan!!!")]
             public string parola { get; set; }
-          
+
         }
         public class IzinTakipView
         {
@@ -40,10 +40,13 @@ namespace PDKS_Code_First.Classes
             public string Departmanad { get; set; }
             [Required(ErrorMessage = "Talep tarihi boş bırakılamaz")]
             public DateTime talep { get; set; }
+           
             [Required(ErrorMessage = "İzin başlama tarihi boş bırakılamaz")]
             public DateTime bas { get; set; }
+            
             [Required(ErrorMessage = "İzin bitiş tarihi boş bırakılamaz")]
             public DateTime son { get; set; }
+            
             public int gun { get; set; }
             [Required(ErrorMessage = "İzin tipi boş bırakılamaz")]
             public IzinTakip.izintip tip { get; set; }
@@ -60,6 +63,8 @@ namespace PDKS_Code_First.Classes
             [Required(ErrorMessage = "İstek nedeni boş bırakılamaz")]
             public string Isteknedeni { get; set; }
             public PersonelKiyafet.Renkler Renk { get; set; }
+           
+            [Required(ErrorMessage = "Zorunlu Alan!!")]
             public PersonelKiyafet.kiymodel Model { get; set; }
             public PersonelKiyafet.AltBeden AltBeden { get; set; }
             public PersonelKiyafet.KafaBeden KafaBeden { get; set; }
@@ -76,7 +81,7 @@ namespace PDKS_Code_First.Classes
             public string Ad { get; set; }
             public string Soyad { get; set; }
             public string Departmanad { get; set; }
-            
+
             [Required(ErrorMessage = "TC Kimlik numarası boş bırakılamaz")]
             [MaxLength(11, ErrorMessage = "TC kimlik numarası 11 haneli olmalıdır!")]
             [MinLength(11, ErrorMessage = "TC kimlik numarası 11 haneli olmalıdır!")]
@@ -105,11 +110,11 @@ namespace PDKS_Code_First.Classes
             public string Ad { get; set; }
             public string Soyad { get; set; }
             public string Departmanad { get; set; }
-           
+
             public string SonMezunOlduguUkulAdı { get; set; }
-            
-            [Required (ErrorMessage = "Eğitim durumu boş bırakıramaz!!")]
-            
+
+            [Required(ErrorMessage = "Eğitim durumu boş bırakıramaz!!")]
+
             public PersonelEgitim.EgitimDurum EgitimDurumu { get; set; }
         }
 
@@ -160,5 +165,21 @@ namespace PDKS_Code_First.Classes
             [Required(ErrorMessage = "Zorunlu Alan!!")]
             public PersonelSaglikDurumlari.Kan KanGrubu { get; set; }
         }
+
+        public class PersonelBelgelerView
+        {
+            public int PersonelBelgeid { get; set; }
+            public int PersonelId { get; set; }
+            public string Tc { get; set; }
+            public string Ad { get; set; }
+            public string Soyad { get; set; }
+            public string Departmanad { get; set; }
+            public int Id { get; set; }
+            public string BelgeAdi { get; set; }
+            public byte[] BelgeYolu { get; set; }
+            public PersonelBelgeler.belgetturu BelgeTuru { get; set; }
+            public string BelgeTipi { get; set; }
+
         }
+    }
 }

@@ -13,22 +13,16 @@ namespace PDKS_Code_First.Entity
         public int Id { get; set; }
 
         public int PersonelId { get; set; }
-
-        [Required]
-        [StringLength(30)]
-        public string BelgeAdi { get; set; }
-
-        [Required]
-        public string DosyaYolu { get; set; }
-
-        public int BelgeTipi { get; set; }
-
+        public string BelgeAdi { get; set; }      
+        public byte[] BelgeYolu { get; set; }
+        public belgetturu BelgeTuru { get; set; }
+        public string BelgeTipi { get; set; }
         public virtual PersonelOzlukBilgileri PersonelOzlukBilgileri { get; set; }
-        public enum belgetipi : byte
+        public enum belgetturu : byte
         {
             Vesikalık = 0,
             İkahmetgah = 1,
-            AdliSicil =2 ,
+            AdliSicil = 2,
             Diploma = 3,
             Kimlik_Fotokopisi = 4
         }
