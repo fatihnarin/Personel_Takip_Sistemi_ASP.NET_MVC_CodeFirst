@@ -30,14 +30,18 @@ namespace PDKS_Code_First.Classes
             public string parola { get; set; }
 
         }
-        public class IzinTakipView
-        {
-            public int izintakipid { get; set; }
+        public class Personel
+        {          
             public int PersonelId { get; set; }
             public string Tc { get; set; }
             public string Ad { get; set; }
             public string Soyad { get; set; }
             public string Departmanad { get; set; }
+        }
+        public class IzinTakipView:Personel
+        {
+            public int izintakipid { get; set; }
+
             [Required(ErrorMessage = "Talep tarihi boş bırakılamaz")]
             public DateTime talep { get; set; }
            
@@ -51,14 +55,10 @@ namespace PDKS_Code_First.Classes
             [Required(ErrorMessage = "İzin tipi boş bırakılamaz")]
             public IzinTakip.izintip tip { get; set; }
         }
-        public class PersonelKiyafetView
+        public class PersonelKiyafetView:Personel
         {
             public int kiyafetid { get; set; }
-            public int PersonelId { get; set; }
-            public string Tc { get; set; }
-            public string Ad { get; set; }
-            public string Soyad { get; set; }
-            public string Departmanad { get; set; }
+ 
             public byte DepartmanId { get; set; }
             [Required(ErrorMessage = "İstek nedeni boş bırakılamaz")]
             public string Isteknedeni { get; set; }
@@ -73,14 +73,10 @@ namespace PDKS_Code_First.Classes
             public byte Kilo { get; set; }
             public byte Boy { get; set; }
         }
-        public class PersonelCocukView
+        public class PersonelCocukView:Personel
         {
             public int Cocukid { get; set; }
-            public int PersonelId { get; set; }
-            public string Tc { get; set; }
-            public string Ad { get; set; }
-            public string Soyad { get; set; }
-            public string Departmanad { get; set; }
+
 
             [Required(ErrorMessage = "TC Kimlik numarası boş bırakılamaz")]
             [MaxLength(11, ErrorMessage = "TC kimlik numarası 11 haneli olmalıdır!")]
@@ -102,14 +98,9 @@ namespace PDKS_Code_First.Classes
             [Required(ErrorMessage = "Cinsiyet alanı boş bırakılamaz")]
             public bool CocukCinsiyet { get; set; }
         }
-        public class PersonelEgitimView
+        public class PersonelEgitimView:Personel
         {
             public int PersonelEgitimid { get; set; }
-            public int PersonelId { get; set; }
-            public string Tc { get; set; }
-            public string Ad { get; set; }
-            public string Soyad { get; set; }
-            public string Departmanad { get; set; }
 
             public string SonMezunOlduguUkulAdı { get; set; }
 
@@ -118,14 +109,10 @@ namespace PDKS_Code_First.Classes
             public PersonelEgitim.EgitimDurum EgitimDurumu { get; set; }
         }
 
-        public class PersonelSaglikView
+        public class PersonelSaglikView:Personel
         {
             public int PersonelSaglikid { get; set; }
-            public int PersonelId { get; set; }
-            public string Tc { get; set; }
-            public string Ad { get; set; }
-            public string Soyad { get; set; }
-            public string Departmanad { get; set; }
+
             [Required(ErrorMessage = "Zorunlu Alan!!")]
             public bool Alerji { get; set; }
 
@@ -166,14 +153,10 @@ namespace PDKS_Code_First.Classes
             public PersonelSaglikDurumlari.Kan KanGrubu { get; set; }
         }
 
-        public class PersonelBelgelerView
+        public class PersonelBelgelerView:Personel
         {
             public int PersonelBelgeid { get; set; }
-            public int PersonelId { get; set; }
-            public string Tc { get; set; }
-            public string Ad { get; set; }
-            public string Soyad { get; set; }
-            public string Departmanad { get; set; }
+
             public int Id { get; set; }
             public string BelgeAdi { get; set; }
             public byte[] BelgeYolu { get; set; }
